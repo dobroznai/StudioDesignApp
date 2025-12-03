@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface SDUserRepository extends JpaRepository<User, Long> {
     Optional<User> findByName(String name);
+
+    String name(String name);
 }
