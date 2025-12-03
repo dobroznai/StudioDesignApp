@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "employees")
 @Data
-public class Employee {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,7 @@ public class Employee {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role  role;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     List<WorkDay> workDays = new ArrayList<>();

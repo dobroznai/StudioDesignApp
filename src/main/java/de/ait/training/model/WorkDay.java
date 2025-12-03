@@ -1,7 +1,10 @@
 package de.ait.training.model;
 
+import de.ait.training.enums.SessionStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +28,7 @@ public class WorkDay {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private User user;
 
     @Column(nullable = false)
     private LocalDateTime startTime;
@@ -35,4 +38,8 @@ public class WorkDay {
 
     @Column(nullable = false)
     private Long dayLength;
+
+    @Enumerated(EnumType.STRING)
+    @Column (nullable = false)
+    private SessionStatus sessionStatust;
 }
