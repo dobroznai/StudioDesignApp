@@ -54,7 +54,7 @@ public class SecurityConfig {
 
         http.formLogin(form -> form
                 // после успешного логина всегда редиректим сюда
-                .defaultSuccessUrl("/api/hours/my", true)
+                .defaultSuccessUrl("/api/public/info", true)
         );
 
         http.httpBasic(Customizer.withDefaults());
