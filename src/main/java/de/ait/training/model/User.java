@@ -27,10 +27,19 @@ public class User {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column
+    private String password;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role  role;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     List<WorkDay> workDays = new ArrayList<>();
+
+    public User(String name, String password, Role role) {
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
 }
