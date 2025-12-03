@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employees")
-
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,25 +36,20 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
 
 //
 //    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 //    List<WorkDay> workDays = new ArrayList<>();
 
+//
+
     public User(String name, String password, Role role) {
         this.name = name;
         this.password = password;
         this.role = role;
+    }
+
+    public User() {
+
     }
 }
