@@ -1,23 +1,26 @@
 package de.ait.training.controller;
 
+
+import de.ait.training.enums.Role;
+import de.ait.training.model.User;
+import de.ait.training.repository.SDUserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/api/admin")
 public class AdminController {
 
-    @GetMapping("/users")
-    public List<Map<String, String>> getAllUsers() {
-        return List.of(
-                Map.of("username", "admin", "role", "ADMIN"),
-                Map.of("username", "user", "role", "USER")
-        );
-}}
+    private final SDUserRepository userRepository;
+
+    public AdminController(SDUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/api/admin/users")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }}
